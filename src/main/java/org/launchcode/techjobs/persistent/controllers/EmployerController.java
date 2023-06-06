@@ -39,13 +39,12 @@ public class EmployerController {
         }
 
         employerRepository.save(newEmployer);
-
+        model.addAttribute("employer", employerRepository.findAll());
         return "redirect:";
     }
 
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
-
 //        Optional optEmployer = null;
         Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
